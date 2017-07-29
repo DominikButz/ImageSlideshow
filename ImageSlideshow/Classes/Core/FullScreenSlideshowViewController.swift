@@ -63,7 +63,9 @@ open class FullScreenSlideshowViewController: UIViewController {
 
         // close button configuration
         closeButton.frame = CGRect(x: 10, y: 20, width: 40, height: 40)
-        closeButton.setImage(UIImage(named: "Frameworks/ImageSlideshow.framework/ImageSlideshow.bundle/ic_cross_white@2x"), for: UIControlState())
+        
+        let buttonImage = UIImage(named: "Frameworks/ImageSlideshow.framework/ImageSlideshow.bundle/closeButton@2x").withRenderingMode(.alwaysTemplate)
+        closeButton.setImage(buttonImage, for: UIControlState())
         closeButton.addTarget(self, action: #selector(FullScreenSlideshowViewController.close), for: UIControlEvents.touchUpInside)
         view.addSubview(closeButton)
     }
