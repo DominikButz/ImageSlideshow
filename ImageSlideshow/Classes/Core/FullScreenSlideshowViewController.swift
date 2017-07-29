@@ -42,6 +42,8 @@ open class FullScreenSlideshowViewController: UIViewController {
             slideshow.zoomEnabled = zoomEnabled
         }
     }
+    
+    public var isPresented: Bool = true
 
     fileprivate var isInit = true
 
@@ -62,9 +64,9 @@ open class FullScreenSlideshowViewController: UIViewController {
         view.addSubview(slideshow)
 
         // close button configuration
-        closeButton.frame = CGRect(x: 10, y: 20, width: 40, height: 40)
+        closeButton.frame = CGRect(x: self.view.frame.size.width - 50.0, y: 10, width: 40, height: 40)
         
-        let buttonImage = UIImage(named: "Frameworks/ImageSlideshow.framework/ImageSlideshow.bundle/closeButton@2x").withRenderingMode(.alwaysTemplate)
+        let buttonImage = UIImage(named: "Frameworks/ImageSlideshow.framework/ImageSlideshow.bundle/closeButton@2x")?.withRenderingMode(.alwaysTemplate)
         closeButton.setImage(buttonImage, for: UIControlState())
         closeButton.addTarget(self, action: #selector(FullScreenSlideshowViewController.close), for: UIControlEvents.touchUpInside)
         view.addSubview(closeButton)
@@ -92,7 +94,7 @@ open class FullScreenSlideshowViewController: UIViewController {
         if let pageSelected = pageSelected {
             pageSelected(slideshow.currentPage)
         }
-
+        self.isPresented = false
         dismiss(animated: true, completion: nil)
     }
 }
